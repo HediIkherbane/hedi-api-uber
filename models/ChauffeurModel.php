@@ -19,30 +19,9 @@ class ChauffeurModel
         $stmt = $this->pdo->query("SELECT * FROM Chauffeur");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    public function getDBChauffeurById ($idChauffeur) {
-        $req = "
-            SELECT * FROM chauffeur
-            WHERE chauffeur_id = :idChauffeur
-        ";
-        $stmt = $this->pdo->prepare($req);
-        $stmt->bindValue(":idChauffeur", $idChauffeur, PDO::PARAM_INT);
-        $stmt->execute();
-        $chauffeur = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $chauffeur;
-    }
-
-    public function getDBChauffeurByIdVoitures ($idChauffeur) {
-        $req = "
-            SELECT * FROM voiture
-            WHERE chauffeur_id = :idChauffeur
-        ";
-        $stmt = $this->pdo->prepare($req);
-        $stmt->bindValue(":idChauffeur", $idChauffeur, PDO::PARAM_INT);
-        $stmt->execute();
-        $voitures = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $voitures;
-    }
 }
+$chauffeur = new ChauffeurModel();
+print_r($chauffeur->getDBAllChauffeurs());
+
 // $chauffeurModel = new ChauffeurModel();
 // print_r($chauffeurModel->getDBAllChauffeurs());
